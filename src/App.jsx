@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
 import AnimatedBackground from './components/AnimatedBackground'
+import ScrollSamosa from './components/ScrollSamosa'
 
 function App() {
   const orderRef = useRef(null)
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className="relative min-h-screen bg-white text-amber-900">
       <AnimatedBackground />
+      <ScrollSamosa />
       <Navbar />
       <main>
         <Hero onCta={scrollToOrder} />
