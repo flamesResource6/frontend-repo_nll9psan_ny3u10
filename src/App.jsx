@@ -1,26 +1,37 @@
-import { useState } from 'react'
+import { useRef } from 'react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Menu from './components/Menu'
+import Footer from './components/Footer'
+import AnimatedBackground from './components/AnimatedBackground'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const orderRef = useRef(null)
+  const scrollToOrder = () => {
+    orderRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
+    <div className="relative min-h-screen bg-white text-amber-900">
+      <AnimatedBackground />
+      <Navbar />
+      <main>
+        <Hero onCta={scrollToOrder} />
+        <Menu />
+        <section id="order" ref={orderRef} className="relative py-20">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="rounded-2xl border border-amber-200 bg-white/70 backdrop-blur p-6">
+              <h3 className="text-2xl font-bold mb-3">Ready to order?</h3>
+              <p className="text-amber-800/80 mb-4">We currently accept walk-ins and phone orders. Online ordering is coming soon!</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href="#menu" className="rounded-lg bg-amber-600 text-white px-4 py-2 font-semibold text-center">Browse Menu</a>
+                <a href="#contact" className="rounded-lg border border-amber-200 px-4 py-2 font-semibold text-center">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <Footer />
+      </main>
     </div>
   )
 }
